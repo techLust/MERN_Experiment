@@ -1,0 +1,29 @@
+body {
+  padding: 5px;
+}
+.home_container {
+  height: 100vh;
+  width: auto;
+  background-color: rgb(43, 143, 176);
+}
+.primary_heading{
+  font-weight: 1000;
+  font-size: 5em;
+  text-align: center;
+}
+.book_menu {
+  font-size: 2rem;
+  padding-left: 3em;
+  cursor: pointer;
+  /* float: right; */
+}
+.track_menu {
+  float: right;
+  font-size: 2rem;
+  padding-right: 3em;
+}
+.home_content {
+  font-size: 10em;
+  text-align: center;
+  font-weight: 1000;
+}

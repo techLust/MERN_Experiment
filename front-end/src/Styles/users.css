@@ -1,0 +1,20 @@
+.users_container {
+  height: auto;
+  width: auto;
+  background-color: rgb(43, 143, 176);
+  /* display: flex; */
+}
+.user_list {
+  /* background-color: burlywood; */
+  /* display: flex;
+  flex-direction: column;
+  gap: 1em; */
+}
+.user_list_item {
+  background-color: rgb(14, 3, 112);
+  margin: 5px;
+  height: 5em;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
