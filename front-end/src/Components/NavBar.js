@@ -53,6 +53,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Badge from "@mui/material/Badge";
+import "../Styles/nav-bar.css";
 
 const pages = [
   { name: "Home", link: "/" },
@@ -92,7 +93,9 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            BOOK STORE
+            <Link className="appbar" to="/">
+              BOOK STORE
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -144,7 +147,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            BOOK STORE
+            <Link to="#"> BOOK STORE</Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page, i) => (

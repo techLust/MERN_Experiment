@@ -1,3 +1,6 @@
-.search_container {
-  padding: 5px 5px 0 0;
+.nav_link {
+  text-decoration: none;
+}
+.appbar {
+  text-decoration: none;
 }

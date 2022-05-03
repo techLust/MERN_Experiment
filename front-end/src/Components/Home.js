@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -30,8 +31,10 @@ const Home = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Orders</Button>
-              <Button size="small">Explore User</Button>
+              <Button size="small">
+                <Link to="/users">Users</Link>
+              </Button>
+              <Button size="small">Explore Users</Button>
             </CardActions>
           </Card>
         </Grid>
@@ -52,8 +55,10 @@ const Home = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Books</Button>
-              <Button size="small">Explore Orders</Button>
+              <Button size="small">
+                <Link to="/books">Books</Link>
+              </Button>
+              <Button size="small">Explore Books</Button>
             </CardActions>
           </Card>
         </Grid>
@@ -74,7 +79,9 @@ const Home = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Orders</Button>
+              <Button size="small">
+                <Link to="/orders">Orders</Link>
+              </Button>
               <Button size="small">Explore Orders</Button>
             </CardActions>
           </Card>

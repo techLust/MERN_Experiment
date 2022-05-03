@@ -6,7 +6,7 @@ const router = express.Router();
 const User = require("./models/user.model");
 const Book = require("./models/book.model");
 const Order = require("./models/order.model");
-
+const Demo = require("./models/demo.model");
 // Create user
 router.post("/users", async (req, res) => {
   const user = new User(req.body);
@@ -20,7 +20,7 @@ router.post("/users", async (req, res) => {
 });
 
 //get user
-router.get('/users', async(req,res)=>{
+router.get("/users", async (req, res) => {
   try {
     const books = await User.find();
     return res.status(200).json({ data: books });
@@ -79,14 +79,18 @@ router.get("/books/search", async (req, res) => {
 router.post("/orders", async (req, res) => {
   try {
     const { book_id, user_id, address, pin_code, phone } = req.body;
-    if (!isValidObjectId(book_id)) return res.status(404).json({ msg: "Invalid bookid" });
-    if (!isValidObjectId(user_id)) return res.status(404).json({ msg: "Invalid userid" });
-    if (!address) return res.status(404).json({ msg: "address field is missing" });
-    if (!pin_code) return res.status(404).json({ msg: "pin_code field is missing" });
+    if (!isValidObjectId(book_id))
+      return res.status(404).json({ msg: "Invalid bookid" });
+    if (!isValidObjectId(user_id))
+      return res.status(404).json({ msg: "Invalid userid" });
+    if (!address)
+      return res.status(404).json({ msg: "address field is missing" });
+    if (!pin_code)
+      return res.status(404).json({ msg: "pin_code field is missing" });
     if (!phone) return res.status(404).json({ msg: "phone field is missing" });
-    
+
     // Creating order
-    const order =  new Order({
+    const order = new Order({
       bookId: book_id,
       userId: user_id,
       address,
@@ -96,7 +100,7 @@ router.post("/orders", async (req, res) => {
 
     // saving record
     await order.save();
-    
+
     return res.status(200).json({ data: order });
   } catch (err) {
     return res.status(500).json({ msg: "Something went wrong" });
@@ -104,7 +108,7 @@ router.post("/orders", async (req, res) => {
 });
 
 // Get Order
-router.get('/orders',async (req,res) => {
+router.get("/orders", async (req, res) => {
   try {
     const query = {};
     const orders = await Order.find(query);
@@ -116,4 +120,14 @@ router.get('/orders',async (req,res) => {
   }
 });
 
+// POST REQUEST TEST
+router.post("/test", async (req, res) => {
+  const test = new Demo(req.body);
+  try {
+    await test.save();
+    return res.status(200).json({ data: test });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 module.exports = router;

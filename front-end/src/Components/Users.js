@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/users.css";
-import { getUserList } from "../api/index";
+import Searchbar from "./Searchbar";
+import { getUserList } from "../api";
 
 const Users = () => {
   const [users, setUser] = useState([]);
@@ -13,6 +14,7 @@ const Users = () => {
 
   return (
     <div className="users_container">
+      <Searchbar />
       <h1 className="primary_heading"> List of users</h1>
       <ul className="user_list">
         {users?.map((user, i) => (
@@ -21,7 +23,6 @@ const Users = () => {
               {user.name} <br></br>
               {user.email}
             </li>
-            {/* <li className="list_item" key={i}>{user.email}</li> */}
           </>
         ))}
       </ul>

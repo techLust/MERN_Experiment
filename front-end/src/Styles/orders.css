@@ -1,7 +1,7 @@
 .orders_container {
-  height: 100vh;
+  height: auto;
   width: auto;
-  background-color: rgb(43, 143, 176);
+  /* background-color: rgb(43, 143, 176); */
 }
 
 .list_item {

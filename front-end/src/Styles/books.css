@@ -1,15 +1,21 @@
 .books_container {
   height: auto;
   width: auto;
-  background-color: rgb(43, 143, 176);
+  /* background-color: rgb(43, 143, 176); */
 }
 
-.list_item{
+.list_item {
   background-color: rgb(14, 3, 112);
   margin: 5px;
   height: 5em;
   border-radius: 10px;
   text-align: center;
   color: white;
-
+}
+.book_card {
+  display: flex;
+  gap: 1.5em;
+  flex-wrap: wrap;
+}
+.book_card:last-child {
 }
