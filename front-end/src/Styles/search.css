@@ -1,9 +1,9 @@
+.search_container {
+  display: flex;
+  justify-content: flex-end;
+}
 .search_style {
   background-color: #1976d2 !important;
   color: rgb(3, 1, 0);
   /* width: 300px !important; */
-}
-.search_container {
-  display: flex;
-  justify-content: flex-end;
 }

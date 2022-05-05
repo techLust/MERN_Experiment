@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../Styles/users.css";
 import Searchbar from "./Searchbar";
 import { getUserList } from "../api";
+import UserDetails from "./UserDetails";
 
 const Users = () => {
   const [users, setUser] = useState([]);
@@ -26,6 +27,7 @@ const Users = () => {
           </>
         ))}
       </ul>
+      <UserDetails />
     </div>
   );
 };

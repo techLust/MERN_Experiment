@@ -10,6 +10,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -51,6 +53,9 @@ const Books = () => {
                 {book.author}
               </Typography>
             </CardContent>
+            <Stack spacing={1}>
+              <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+            </Stack>
             <CardActions>
               <Button size="small">${book.price}</Button>
               <Button size="small">Buy now</Button>
