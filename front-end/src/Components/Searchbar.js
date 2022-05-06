@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import "../Styles/search.css";
+import { searchBook } from "../api";
 
 const Searchbar = () => {
   const Search = styled("div")(({ theme }) => ({
@@ -48,6 +49,23 @@ const Searchbar = () => {
     },
   }));
 
+  // SEARCH BOOKS
+
+  //Store data into state variable.
+  const [searchInput, setSearchInput] = useState("");
+
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue);
+  };
+
+  const [searchData, setSearchData] = useState([]);
+
+  // useEffect(() => {
+  //   searchBook.then((res) => {
+  //     setSearchData(res.data);
+  //   });
+  // }, []);
+
   return (
     <div className="search_container">
       <Search className="search_style">
@@ -57,6 +75,8 @@ const Searchbar = () => {
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
+          value={searchInput}
+          onChange={(e) => searchItems(console.log(e.target.value))}
         />
       </Search>
     </div>

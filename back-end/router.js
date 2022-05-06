@@ -7,7 +7,10 @@ const User = require("./models/user.model");
 const Book = require("./models/book.model");
 const Order = require("./models/order.model");
 const Demo = require("./models/demo.model");
-// Create user
+
+//********************************* POST REQUEST APIs ************************** */
+// CREATE USER
+
 router.post("/users", async (req, res) => {
   const user = new User(req.body);
 
@@ -19,17 +22,7 @@ router.post("/users", async (req, res) => {
   }
 });
 
-//get user
-router.get("/users", async (req, res) => {
-  try {
-    const books = await User.find();
-    return res.status(200).json({ data: books });
-  } catch (err) {
-    return res.status(500).json({ msg: "Something went wrong" });
-  }
-});
-
-// Create book
+// CREATE BOOK
 router.post("/books", async (req, res) => {
   const book = new Book(req.body);
 
@@ -41,41 +34,7 @@ router.post("/books", async (req, res) => {
   }
 });
 
-// Get Book
-router.get("/books", async (req, res) => {
-  try {
-    const books = await Book.find();
-    return res.status(200).json({ data: books });
-  } catch (err) {
-    return res.status(500).json({ msg: "Something went wrong" });
-  }
-});
-
-// Search Book
-router.get("/books/search", async (req, res) => {
-  try {
-    const search = req.query.search;
-    if (!search)
-      return res.status(404).json({ msg: "Search field is missing" });
-
-    const result = await Book.aggregate([
-      {
-        $match: {
-          title: {
-            $regex: search,
-          },
-        },
-      },
-    ]);
-
-    res.status(200).json({ data: result });
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ msg: "Something went wrong" });
-  }
-});
-
-// Place Order
+// PLACE ORDER
 router.post("/orders", async (req, res) => {
   try {
     const { book_id, user_id, address, pin_code, phone } = req.body;
@@ -107,7 +66,29 @@ router.post("/orders", async (req, res) => {
   }
 });
 
-// Get Order
+// ************************** GET REQUEST APIs ************************************
+
+// GET USER
+router.get("/users", async (req, res) => {
+  try {
+    const books = await User.find();
+    return res.status(200).json({ data: books });
+  } catch (err) {
+    return res.status(500).json({ msg: "Something went wrong" });
+  }
+});
+
+// GET BOOK
+router.get("/books", async (req, res) => {
+  try {
+    const books = await Book.find();
+    return res.status(200).json({ data: books });
+  } catch (err) {
+    return res.status(500).json({ msg: "Something went wrong" });
+  }
+});
+
+// GET ORDER
 router.get("/orders", async (req, res) => {
   try {
     const query = {};
@@ -120,6 +101,55 @@ router.get("/orders", async (req, res) => {
   }
 });
 
+//****************************** SEARCH REQUEST APIs **************************** */
+// SEARCH BOOK
+router.get("/books/search", async (req, res) => {
+  try {
+    const search = req.query.search;
+    if (!search)
+      return res.status(404).json({ msg: "Search field is missing" });
+
+    const result = await Book.aggregate([
+      {
+        $match: {
+          title: {
+            $regex: search,
+          },
+        },
+      },
+    ]);
+
+    res.status(200).json({ data: result });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ msg: "Something went wrong" });
+  }
+});
+
+// ************************ DELETE REQUEST APIs *********************************
+
+// DELETE USER
+router.delete("/book/delete/:id", async (req, res) => {
+  try {
+    await Book.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      status: "Success",
+      data: {
+        book: "Deleted",
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      data: "Fail",
+      message: err,
+    });
+    console.log(err);
+  }
+});
+
+//***************************** APIs FOR TESTING ************************** */
+
 // POST REQUEST TEST
 router.post("/test", async (req, res) => {
   const test = new Demo(req.body);
@@ -130,4 +160,5 @@ router.post("/test", async (req, res) => {
     res.status(500).send(err);
   }
 });
+
 module.exports = router;

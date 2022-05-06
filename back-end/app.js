@@ -9,7 +9,7 @@ const port = 8000;
 app.use(cors());
 app.use(express.json()); // allows us to accept the data in json format.
 
-// Database connection
+// DATABASE  CONNECTION ESTABLISHMENT
 mongoose.connect(
   "mongodb+srv://myNewDatabase:Mahatab123@cluster0.zhoox.mongodb.net/bookstoredb?retryWrites=true&w=majority",
 
@@ -25,7 +25,7 @@ db.once("open", function () {
   console.log("database connected successfully");
 });
 
-//Router
+//ROUTER
 app.use("/", require("./router"));
 
 app.listen(port, () => console.log(`Server running on ${port} port`));
