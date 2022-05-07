@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/users.css";
-import Searchbar from "./Searchbar";
+// import Searchbar from "./Searchbar";
 import { getUserList } from "../api";
 import UserDetails from "./UserDetails";
 
@@ -15,7 +15,7 @@ const Users = () => {
 
   return (
     <div className="users_container">
-      <Searchbar />
+      {/* <Searchbar /> */}
       <h1 className="primary_heading"> List of users</h1>
       <ul className="user_list">
         {users?.map((user, i) => (

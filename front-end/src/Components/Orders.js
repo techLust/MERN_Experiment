@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/orders.css";
 import { getOrders } from "../api/index";
-import Searchbar from "./Searchbar";
+// import Searchbar from "./Searchbar";
 import OrderTest from "./OrderDetails";
 
 const StudentLogin = () => {
@@ -16,7 +16,7 @@ const StudentLogin = () => {
 
   return (
     <div className="orders_container">
-      <Searchbar />
+      {/* <Searchbar /> */}
       <h1 className="primary_heading"> List of orders</h1>
       <ul className="#">
         {orders?.map((data, i) => (

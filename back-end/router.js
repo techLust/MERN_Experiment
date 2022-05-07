@@ -1,6 +1,5 @@
 const express = require("express");
 const { isValidObjectId } = require("mongoose");
-const app = express();
 const router = express.Router();
 
 const User = require("./models/user.model");
@@ -126,6 +125,26 @@ router.get("/books/search", async (req, res) => {
   }
 });
 
+//******************************** UPDATE REQUEST APIs *********************** */
+
+router.patch("/user/update/:id", async (req, res) => {
+  try {
+    await User.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json({
+      status: "Success",
+      data: {
+        user: "Updated",
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      data: "Failed",
+      message: err,
+    });
+
+    console.log(err);
+  }
+});
 // ************************ DELETE REQUEST APIs *********************************
 
 // DELETE USER

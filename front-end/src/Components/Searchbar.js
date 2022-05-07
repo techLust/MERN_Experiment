@@ -3,7 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import "../Styles/search.css";
-import { searchBook } from "../api";
+import { searchBook } from "../api/index";
 
 const Searchbar = () => {
   const Search = styled("div")(({ theme }) => ({
@@ -53,30 +53,28 @@ const Searchbar = () => {
 
   //Store data into state variable.
   const [searchInput, setSearchInput] = useState("");
-
-  const searchItems = (searchValue) => {
-    setSearchInput(searchValue);
-  };
-
   const [searchData, setSearchData] = useState([]);
 
-  // useEffect(() => {
-  //   searchBook.then((res) => {
-  //     setSearchData(res.data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    searchBook(searchInput).then((data) => {
+      console.log(data);
+      setSearchData(data);
+    });
+  }, [searchInput]);
 
   return (
     <div className="search_container">
+      {/* <input type="text"></input> */}
       <Search className="search_style">
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
+
         <StyledInputBase
           placeholder="Search…"
-          inputProps={{ "aria-label": "search" }}
+          // inputProps={{ "aria-label": "search" }}
           value={searchInput}
-          onChange={(e) => searchItems(console.log(e.target.value))}
+          onKeyUp={(e) => setSearchInput(e.target.value)}
         />
       </Search>
     </div>

@@ -41,11 +41,14 @@ export const getOrders = async () => {
 };
 
 // SEARCH BOOKS BY NAME
-export const searchBook = async (req, res) => {
+
+export const searchBook = async (searchInput) => {
   try {
-    const data = await axios.get(`${req.param}`);
+    const {
+      data: { data },
+    } = await axios.get(`${BASE_URL}/books/search?search=${searchInput}`);
     return data;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
