@@ -6,6 +6,7 @@ const User = require("./models/user.model");
 const Book = require("./models/book.model");
 const Order = require("./models/order.model");
 const Demo = require("./models/demo.model");
+const SignUp = require("./models/signup.model");
 
 //********************************* POST REQUEST APIs ************************** */
 // CREATE USER
@@ -177,6 +178,22 @@ router.post("/test", async (req, res) => {
     return res.status(200).json({ data: test });
   } catch (err) {
     res.status(500).send(err);
+  }
+});
+
+//******************** API FOR SIGNUP ************************* */
+router.post("/signup", async (req, res) => {
+  const signup = new SignUp(req.body);
+  try {
+    await signup.save();
+    res.send(signup);
+  } catch (err) {
+    res.status(500).json({
+      status: "Sign up failed",
+      data: {
+        signup: "Check your data",
+      },
+    });
   }
 });
 

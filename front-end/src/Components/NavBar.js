@@ -50,10 +50,11 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import Badge from "@mui/material/Badge";
+// import MailIcon from "@mui/icons-material/Mail";
+// import NotificationsIcon from "@mui/icons-material/Notifications";
+// import Badge from "@mui/material/Badge";
 import "../Styles/nav-bar.css";
+// import SignIn from "./SignIn";
 
 const pages = [
   { name: "Home", link: "/" },
@@ -93,7 +94,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            <Link className="appbar" to="/">
+            <Link className="brandig_style" to="/">
               BOOK STORE
             </Link>
           </Typography>
@@ -141,7 +142,9 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
+
           <Typography
+            className="test"
             variant="h6"
             noWrap
             component="div"
@@ -151,7 +154,7 @@ const ResponsiveAppBar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page, i) => (
-              <Link to={page?.link} key={i}>
+              <Link className="login_style" to={page?.link} key={i}>
                 <Button
                   key={page?.name}
                   onClick={handleCloseNavMenu}
@@ -162,7 +165,17 @@ const ResponsiveAppBar = () => {
               </Link>
             ))}
           </Box>
-          <Box>
+
+          {/******************* LOGIN BUTTON ************************ */}
+
+          <Button color="inherit">
+            <Link className="login_style" to="/signin">
+              Login
+            </Link>
+          </Button>
+
+          {/**************** NOTIFICATION AND MAIL ICON ************************ */}
+          {/* <Box>
             <IconButton
               size="large"
               aria-label="show 4 new mails"
@@ -181,9 +194,10 @@ const ResponsiveAppBar = () => {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-          </Box>
+          </Box> */}
 
-          <Box sx={{ flexGrow: 0 }}>
+          {/********************* AVATAR FOR PROFILE IMAGE ****************************** */}
+          {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="#" />
@@ -211,7 +225,7 @@ const ResponsiveAppBar = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>

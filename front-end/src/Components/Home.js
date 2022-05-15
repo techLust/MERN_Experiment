@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
+import SignUP from "./SignUp";
 
 const Home = () => {
   return (
@@ -87,6 +88,7 @@ const Home = () => {
           </Card>
         </Grid>
       </Grid>
+      {/* <SignUP /> */}
     </Container>
   );
 };

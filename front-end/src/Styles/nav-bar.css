@@ -1,6 +1,9 @@
-.nav_link {
+.brandig_style {
   text-decoration: none;
+  color: white;
 }
-.appbar {
+.login_style {
   text-decoration: none;
+  color: white;
+  font-size: 1.3em;
 }

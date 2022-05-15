@@ -5,6 +5,8 @@ import Users from "./Components/Users";
 import Books from "./Components/Books";
 import Orders from "./Components/Orders";
 import Home from "./Components/Home";
+import SignIn from "./Components/SignIn";
+import SignUp from "./Components/SignUp";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/users" element={<Users />} />
         <Route path="/books" element={<Books />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
       {/* <div className="footer">Footer</div> */}
     </div>
