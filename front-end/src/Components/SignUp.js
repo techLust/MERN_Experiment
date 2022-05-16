@@ -13,6 +13,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -38,18 +39,39 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
-
+  // ******************** STATE AND HANDLERS ************************************
   const [firstName, setFirstName] = React.useState("");
-  const firstNameHandler = (event) =>
-    setFirstName(console.log(event.target.value));
+  const firstNameHandler = (event) => setFirstName(event.target.value);
+
+  const [lastName, setLastName] = React.useState("");
+  const lastNameHandler = (event) => setLastName(event.target.value);
+
+  const [email, setEmail] = React.useState("");
+  const emailHandler = (event) => setEmail(event.target.value);
+
+  const [password, setPassword] = React.useState("");
+  const passwordHandler = (event) => setPassword(event.target.value);
+
+  // ******************** SIGN UP HANDLER *******************************
+  const signUpHandler = (event) => {
+    event.preventDefault();
+    const signUpData = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+    };
+    console.log(signUpData);
+    // Calling SIGN UP API
+    axios
+      .post("http://localhost:8000/signup", signUpData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -72,7 +94,7 @@ export default function SignUp() {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            // onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
@@ -96,6 +118,8 @@ export default function SignUp() {
                   id="lastName"
                   label="Last Name"
                   name="lastName"
+                  value={lastName}
+                  onChange={lastNameHandler}
                   autoComplete="family-name"
                 />
               </Grid>
@@ -106,6 +130,8 @@ export default function SignUp() {
                   id="email"
                   label="Email Address"
                   name="email"
+                  value={email}
+                  onChange={emailHandler}
                   autoComplete="email"
                 />
               </Grid>
@@ -117,6 +143,8 @@ export default function SignUp() {
                   label="Password"
                   type="password"
                   id="password"
+                  value={password}
+                  onChange={passwordHandler}
                   autoComplete="new-password"
                 />
               </Grid>
@@ -130,6 +158,7 @@ export default function SignUp() {
               </Grid>
             </Grid>
             <Button
+              onClick={signUpHandler}
               type="submit"
               fullWidth
               variant="contained"

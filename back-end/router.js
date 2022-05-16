@@ -197,4 +197,19 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+//******************** API FOR LOGIN **************** */
+router.post("/signin", async (req, res) => {
+  //check if email exits
+
+  if (req.body.email && req.body.password) {
+    const loginData = await SignUp.findOne(req.body);
+    if (loginData) {
+      res.status(200).json({ loginData });
+      console.log("Login successful");
+    } else {
+      res.status(500).json({ data: "No user found" });
+    }
+  }
+});
+
 module.exports = router;

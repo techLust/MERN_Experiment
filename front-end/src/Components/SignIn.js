@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -34,14 +35,57 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  // HANDLING STATES
+  const [email, setEmail] = React.useState("");
+  const emailHandler = (event) => setEmail(event.target.value);
+
+  const [password, setPassword] = React.useState("");
+  const passwordHandler = (event) => setPassword(event.target.value);
+  //HANDLING FORM DATA
+  const signInHandler = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const signInData = {
+      Email: email,
+      Password: password,
+    };
+    console.log(signInData);
+    // Calling SIGN IN API
+    console.log("Above axios");
+    axios
+      .post("http://localhost:8000/signin", signInData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log("Below axios");
   };
+
+  //HANDLING FORM DATA
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   // const data = new FormData(event.currentTarget);
+  //   // console.log({
+  //   //   email: data.get("email"),
+  //   //   password: data.get("password"),
+  //   // });
+
+  //   const data = {
+  //     email: email,
+  //     password: password,
+  //   };
+  //   console.log(data);
+
+  //   axios
+  //     .post("http://localhost:8000/signin", data)
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -63,18 +107,19 @@ export default function SignIn() {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            // onSubmit={handleSubmit}
             noValidate
             sx={{ mt: 1 }}
           >
             <TextField
-              margin="normal"
+              autoComplete="given-name"
+              name="firstName"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="firstName"
+              value={email}
+              onChange={emailHandler}
+              label="Email"
               autoFocus
             />
             <TextField
@@ -84,6 +129,8 @@ export default function SignIn() {
               name="password"
               label="Password"
               type="password"
+              value={password}
+              onChange={passwordHandler}
               id="password"
               autoComplete="current-password"
             />
@@ -94,6 +141,7 @@ export default function SignIn() {
             <Button
               type="submit"
               fullWidth
+              onClick={signInHandler}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
