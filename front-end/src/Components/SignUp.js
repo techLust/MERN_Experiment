@@ -64,7 +64,7 @@ export default function SignUp() {
     console.log(signUpData);
     // Calling SIGN UP API
     axios
-      .post("http://localhost:8000/signup", signUpData)
+      .post("http://localhost:8000/api/v1/signup", signUpData)
       .then((response) => {
         console.log(response);
       })

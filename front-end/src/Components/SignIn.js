@@ -52,7 +52,7 @@ export default function SignIn() {
     // Calling SIGN IN API
     console.log("Above axios");
     axios
-      .post("http://localhost:8000/signin", signInData)
+      .post("http://localhost:8000/api/v1/signin", signInData)
       .then((response) => {
         console.log(response);
       })

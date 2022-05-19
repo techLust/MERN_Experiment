@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// Schema for Teacher login credential
+//CREATING SCHEMA
 const UserShcema = new mongoose.Schema(
   {
     name: {
@@ -21,6 +21,8 @@ const UserShcema = new mongoose.Schema(
   }
 );
 
-// Creating model of schema
+//CREATING USER MODEL
 const User = mongoose.model("User", UserShcema);
+
+//EXPORT USER MODEL
 module.exports = User;

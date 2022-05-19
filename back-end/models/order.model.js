@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// Schema for Teacher login credential
+// SCHEMA CREATION
 const OrderShcema = new mongoose.Schema(
   {
     bookId: {
@@ -29,6 +29,8 @@ const OrderShcema = new mongoose.Schema(
   }
 );
 
-// Creating model of schema
+// CREATING MODEL
 const Order = mongoose.model("Order", OrderShcema);
+
+// EXPORTING MODULE
 module.exports = Order;

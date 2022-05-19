@@ -9,7 +9,7 @@ export const getBookList = async () => {
   try {
     const {
       data: { data },
-    } = await axios.get(`${BASE_URL}/books`);
+    } = await axios.get(`${BASE_URL}/api/v1/book`);
     return data;
   } catch (error) {
     console.log(error);
@@ -21,7 +21,7 @@ export const getUserList = async () => {
   try {
     const {
       data: { data },
-    } = await axios.get(`${BASE_URL}/users`);
+    } = await axios.get(`${BASE_URL}/api/v1/user`);
     return data;
   } catch (error) {
     console.log(error);
@@ -33,7 +33,7 @@ export const getOrders = async () => {
   try {
     const {
       data: { data },
-    } = await axios.get(`${BASE_URL}/orders`);
+    } = await axios.get(`${BASE_URL}/api/v1/order`);
     return data;
   } catch (error) {
     console.log(error);
@@ -46,7 +46,7 @@ export const searchBook = async (searchInput) => {
   try {
     const {
       data: { data },
-    } = await axios.get(`${BASE_URL}/books/search?search=${searchInput}`);
+    } = await axios.get(`${BASE_URL}/api/v1/book/search?search=${searchInput}`);
     return data;
   } catch (error) {
     console.log(error);
