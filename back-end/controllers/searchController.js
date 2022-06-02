@@ -1,3 +1,5 @@
+const Book = require("../models/book.model");
+
 //*******************SEARCH BOOK**********************
 exports.searchBook = async (req, res) => {
   try {

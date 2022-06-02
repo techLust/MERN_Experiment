@@ -1,4 +1,3 @@
-// import React, { useState, useEffect } from "react";
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -13,7 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
+import { userSignUp } from "../api/index";
 
 function Copyright(props) {
   return (
@@ -53,24 +52,17 @@ export default function SignUp() {
   const passwordHandler = (event) => setPassword(event.target.value);
 
   // ******************** SIGN UP HANDLER *******************************
+  const signUpData = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    password: password,
+  };
   const signUpHandler = (event) => {
     event.preventDefault();
-    const signUpData = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-    };
+    // Calling sign up api
+    userSignUp(signUpData);
     console.log(signUpData);
-    // Calling SIGN UP API
-    axios
-      .post("http://localhost:8000/api/v1/signup", signUpData)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   return (

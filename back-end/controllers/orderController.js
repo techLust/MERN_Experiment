@@ -1,6 +1,7 @@
 const orderModel = require("../models/order.model");
 const { isValidObjectId } = require("mongoose");
 
+//******************* CREATE ORDER ******************** */
 exports.placeOrder = async (req, res) => {
   try {
     const { book_id, user_id, address, pin_code, phone } = req.body;

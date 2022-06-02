@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require("cors");
 
 //*****************IMPORTING ROUTERS "routers" DIRECTORY*****************
-const userRouter = require("./routers/userRouter");
 const bookRouter = require("./routers/bookRouter");
 const orderRouter = require("./routers/orderRouter");
 const searchRouter = require("./routers/searchRouter");
@@ -20,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 //************************ROUTER ENDPOINTS*******************************
-app.use("/api/v1/user", userRouter);
+app.use("/api/v1/user", signUpRouter);
 app.use("/api/v1/book", bookRouter);
 app.use("/api/v1/order", orderRouter);
 app.use("/api/v1/book/search", searchRouter);

@@ -27,19 +27,6 @@ const Searchbar = () => {
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
       />
-      {/* <input type="text"></input>
-      <Search className="search_style">
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-
-        <StyledInputBase
-          placeholder="Search…"
-          // inputProps={{ "aria-label": "search" }}
-          value={searchInput}
-          onKeyUp={(e) => setSearchInput(e.target.value)}
-        />
-      </Search> */}
     </div>
   );
 };

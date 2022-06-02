@@ -12,7 +12,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
+import { userSignIn } from "../api/index";
+import Snackbar from "@mui/material/Snackbar";
 
 function Copyright(props) {
   return (
@@ -41,51 +42,33 @@ export default function SignIn() {
 
   const [password, setPassword] = React.useState("");
   const passwordHandler = (event) => setPassword(event.target.value);
-  //HANDLING FORM DATA
-  const signInHandler = (event) => {
-    event.preventDefault();
-    const signInData = {
-      Email: email,
-      Password: password,
-    };
-    console.log(signInData);
-    // Calling SIGN IN API
-    console.log("Above axios");
-    axios
-      .post("http://localhost:8000/api/v1/signin", signInData)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    console.log("Below axios");
+
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+
+  const { vertical, horizontal, open } = state;
+
+  const handleClick = (newState) => () => {
+    setState({ open: true, ...newState });
+  };
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
   };
 
   //HANDLING FORM DATA
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   // const data = new FormData(event.currentTarget);
-  //   // console.log({
-  //   //   email: data.get("email"),
-  //   //   password: data.get("password"),
-  //   // });
-
-  //   const data = {
-  //     email: email,
-  //     password: password,
-  //   };
-  //   console.log(data);
-
-  //   axios
-  //     .post("http://localhost:8000/signin", data)
-  //     .then((response) => {
-  //       console.log(response);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  const signInData = {
+    email: email,
+    password: password,
+  };
+  const signInHandler = (event) => {
+    event.preventDefault();
+    // CALLING SIGN IN API
+    userSignIn(signInData);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -99,6 +82,14 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
+          <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            open={open}
+            onClose={handleClose}
+            message="I love snacks"
+            key={vertical + horizontal}
+          />
+
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -113,10 +104,10 @@ export default function SignIn() {
           >
             <TextField
               autoComplete="given-name"
-              name="firstName"
+              name="email"
               required
               fullWidth
-              id="firstName"
+              id="email"
               value={email}
               onChange={emailHandler}
               label="Email"
