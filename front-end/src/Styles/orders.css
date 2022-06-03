@@ -1,15 +1,23 @@
-.orders_container {
-  height: auto;
-  width: auto;
-  /* background-color: rgb(43, 143, 176); */
+.orders_header {
+  display: grid;
+  background-color: #1976d2;
+  color: rgb(255, 255, 255);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-bottom: 10px;
+  height: 3rem;
+  justify-items: center;
+  align-items: center;
+  font-weight: 800;
 }
 
-.list_item {
-  background-color: rgb(14, 3, 112);
-  margin: 5px;
-  height: auto;
+.orders {
+  display: grid;
+  background-color: #f2f2f2;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-bottom: 6px;
+  height: 4rem;
+  align-items: center;
+  justify-items: center;
   border-radius: 10px;
-  text-align: center;
-  color: white;
-  line-height: 2em;
+  box-shadow: 10px 5px 10px 0 #000000;
 }

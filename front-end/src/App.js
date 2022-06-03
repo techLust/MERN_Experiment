@@ -7,6 +7,7 @@ import Orders from "./Components/Orders";
 import Home from "./Components/Home";
 import SignIn from "./Components/SignIn";
 import SignUp from "./Components/SignUp";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -20,7 +21,10 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
-      {/* <div className="footer">Footer</div> */}
+
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

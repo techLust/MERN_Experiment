@@ -33,9 +33,8 @@ const Home = () => {
             </CardContent>
             <CardActions>
               <Button size="small">
-                <Link to="/users">Users</Link>
+                <Link to="/users">Explore Users</Link>
               </Button>
-              <Button size="small">Explore Users</Button>
             </CardActions>
           </Card>
         </Grid>
@@ -57,9 +56,8 @@ const Home = () => {
             </CardContent>
             <CardActions>
               <Button size="small">
-                <Link to="/books">Books</Link>
+                <Link to="/books">Explore Books</Link>
               </Button>
-              <Button size="small">Explore Books</Button>
             </CardActions>
           </Card>
         </Grid>
@@ -81,9 +79,8 @@ const Home = () => {
             </CardContent>
             <CardActions>
               <Button size="small">
-                <Link to="/orders">Orders</Link>
+                <Link to="/orders">Explore Orders</Link>
               </Button>
-              <Button size="small">Explore Orders</Button>
             </CardActions>
           </Card>
         </Grid>

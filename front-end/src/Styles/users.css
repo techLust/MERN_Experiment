@@ -1,20 +1,23 @@
-.users_container {
-  height: auto;
-  width: auto;
-  /* background-color: rgb(43, 143, 176); */
-  /* display: flex; */
+.user_header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: #1976d2;
+  color: rgb(255, 255, 255);
+  margin-bottom: 10px;
+  height: 3rem;
+  justify-items: center;
+  align-items: center;
+  font-weight: 800;
 }
-.user_list {
-  /* background-color: burlywood; */
-  /* display: flex;
-  flex-direction: column;
-  gap: 1em; */
-}
-.user_list_item {
-  background-color: rgb(14, 3, 112);
-  margin: 5px;
-  height: 5em;
+
+.user_details {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: #f2f2f2;
+  margin-bottom: 6px;
+  height: 4rem;
+  align-items: center;
+  justify-items: center;
   border-radius: 10px;
-  text-align: center;
-  color: white;
+  box-shadow: 10px 5px 10px 0 #000000;
 }

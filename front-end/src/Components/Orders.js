@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../Styles/orders.css";
 import { getOrders } from "../api/index";
 // import Searchbar from "./Searchbar";
-import OrderTest from "./OrderDetails";
+import OrderDetails from "./OrderDetails";
 
 const StudentLogin = () => {
   const [orders, setOrders] = useState([]);
@@ -16,26 +16,29 @@ const StudentLogin = () => {
 
   return (
     <div className="orders_container">
-      {/* <Searchbar /> */}
       <h1 className="primary_heading"> List of orders</h1>
-      <ul className="#">
-        {orders?.map((data, i) => (
-          <>
-            <li className="list_item" key={i}>
-              {data.bookId}
-              <br></br>
-              {data.userId}
-              <br></br>
-              {data.address}
-              <br></br>
-              {data.pinCode}
-              <br></br>
-              {data.phone}
-            </li>
-          </>
-        ))}
-      </ul>
-      <OrderTest />
+      {/* <Searchbar /> */}
+
+      <div className="orders_header">
+        <div>Book Id</div>
+        <div>User Id</div>
+        <div>Address</div>
+        <div>Phone</div>
+        <div>Pin code</div>
+      </div>
+
+      {orders?.map((data, i) => (
+        <>
+          <div className="orders">
+            <div className="order_info_bookId">{data.bookId}</div>
+            <div className="order_info_userId">{data.userId}</div>
+            <div className="order_info_address">{data.address}</div>
+            <div className="order_info_phone">{data.phone}</div>
+            <div className="order_info_pin">{data.pinCode}</div>
+          </div>
+        </>
+      ))}
+      {/* <OrderDetails /> */}
     </div>
   );
 };

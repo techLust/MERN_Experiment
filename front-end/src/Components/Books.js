@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import Pagination from "@mui/material/Pagination";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -72,6 +73,7 @@ const Books = () => {
           // </>
         ))}
       </ul>
+      <Pagination count={10} color="primary" />
     </div>
   );
 };
