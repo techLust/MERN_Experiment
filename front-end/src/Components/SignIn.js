@@ -1,4 +1,5 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,61 +14,40 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { userSignIn } from "../api/index";
-import Snackbar from "@mui/material/Snackbar";
-
-// function Copyright(props) {
-//   return (
-//     <Typography
-//       variant="body2"
-//       color="text.secondary"
-//       align="center"
-//       {...props}
-//     >
-//       {"Copyright © "}
-//       <Link color="inherit" href="">
-//         Book Store Limited
-//       </Link>{" "}
-//       {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
 
 const theme = createTheme();
 
 export default function SignIn() {
   // HANDLING STATES
-  const [email, setEmail] = React.useState("");
+  const [email, setEmail] = useState("");
   const emailHandler = (event) => setEmail(event.target.value);
 
-  const [password, setPassword] = React.useState("");
+  const [password, setPassword] = useState("");
   const passwordHandler = (event) => setPassword(event.target.value);
 
-  const [state, setState] = React.useState({
-    open: false,
-    vertical: "top",
-    horizontal: "center",
-  });
-
-  const { vertical, horizontal, open } = state;
-
-  const handleClick = (newState) => () => {
-    setState({ open: true, ...newState });
-  };
-
-  const handleClose = () => {
-    setState({ ...state, open: false });
-  };
+  // const nav = useNavigate();
 
   //HANDLING FORM DATA
   const signInData = {
     email: email,
     password: password,
   };
+
   const signInHandler = (event) => {
     event.preventDefault();
     // CALLING SIGN IN API
-    userSignIn(signInData);
+    console.log("Form data", signInData);
+    userSignIn(signInData).then((response) =>
+      console.log("Frontend response", response)
+    );
+
+    // return res;
+    // if (res) {
+    //   setEmail("");
+    //   setPassword("");
+    //   nav("/");
+    // } else {
+    // }
   };
 
   return (
@@ -82,14 +62,6 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
-          <Snackbar
-            anchorOrigin={{ vertical, horizontal }}
-            open={open}
-            onClose={handleClose}
-            message="I love snacks"
-            key={vertical + horizontal}
-          />
-
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -152,7 +124,6 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );

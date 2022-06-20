@@ -1,6 +1,6 @@
 const signUpModel = require("../models/signup.model");
 
-//********************* CREATE USER (SIGN UP) ******************* */
+//=======================// CREATE USER (SIGN UP) //=======================
 exports.userSignUp = async (req, res) => {
   const signup = new signUpModel(req.body);
   try {
@@ -17,7 +17,7 @@ exports.userSignUp = async (req, res) => {
   }
 };
 
-//********************* GET USER (SIGN UP) ******************** */
+//=======================// GET USER (SIGN UP) //=======================
 exports.getUser = async (req, res) => {
   try {
     const users = await signUpModel.find();
@@ -27,7 +27,7 @@ exports.getUser = async (req, res) => {
   }
 };
 
-//***************** UPDATE USER ************************* */
+//=======================// UPDATE USER //=======================
 exports.updateUser = async (req, res) => {
   try {
     await signUpModel.findByIdAndUpdate(req.params.id, req.body);
@@ -47,7 +47,7 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-//****************** DELETE USER ********************** */
+//=======================// DELETE USER //=======================
 exports.deleteUser = async (req, res) => {
   try {
     await signUpModel.findByIdAndDelete(req.params.id);

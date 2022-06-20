@@ -8,7 +8,7 @@ import Home from "./Components/Home";
 import SignIn from "./Components/SignIn";
 import SignUp from "./Components/SignUp";
 import Footer from "./Components/Footer";
-
+import Admin from "./Components/Admin";
 function App() {
   return (
     <div className="App">

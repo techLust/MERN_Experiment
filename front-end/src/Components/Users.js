@@ -1,17 +1,31 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/users.css";
 // import Searchbar from "./Searchbar";
-import { getUserList } from "../api";
-import UserDetails from "./UserDetails";
+import { getUserList, deleteUserData } from "../api";
+// import UserDetails from "./UserDetails"
+import DeleteIcon from "@mui/icons-material/Delete";
+import UpdateIcon from "@mui/icons-material/Update";
 
 const Users = () => {
   const [users, setUser] = useState([]);
   useEffect(() => {
     getUserList().then((data) => {
       setUser(data);
-      console.log(data);
+      // console.log(data);
     });
   }, []);
+
+  // Delete user API call
+  const deleteUserHandler = () => {
+    // deleteUserData();
+    console.log("user deleted");
+  };
+
+  //Update user API call
+  const updateUserHandler = () => {
+    // deleteUserData();
+    console.log("user updated");
+  };
 
   return (
     <div className="users_container">
@@ -23,6 +37,7 @@ const Users = () => {
         <div>Last Name</div>
         <div>Full Name</div>
         <div>Email</div>
+        <div>Actions</div>
       </div>
       {users?.map((user, i) => (
         <>
@@ -31,6 +46,14 @@ const Users = () => {
             <div>{user.lastName}</div>
             <div>{user.firstName + " " + user.lastName}</div>
             <div>{user.email}</div>
+            <div className="action_icons">
+              <div>
+                <UpdateIcon onClick={updateUserHandler} />
+              </div>
+              <div>
+                <DeleteIcon onClick={deleteUserHandler} />
+              </div>
+            </div>
           </div>
         </>
       ))}

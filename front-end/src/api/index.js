@@ -1,10 +1,10 @@
 import axios from "axios";
 
-//************************** APIs CALL ************************* */
+//**************************// APIs(Services) CALL //************************* */
 
 const BASE_URL = "http://localhost:8000";
 
-//***************************** GET BOOKS LIST *********************
+//========================// GET BOOKS LIST //========================//
 export const getBookList = async () => {
   try {
     const {
@@ -16,7 +16,7 @@ export const getBookList = async () => {
   }
 };
 
-//*********************GET USERS LIST***************************
+//========================// GET USERS LIST //========================//
 export const getUserList = async () => {
   try {
     const {
@@ -28,7 +28,7 @@ export const getUserList = async () => {
   }
 };
 
-//***********************GET ORDERS LIST***************************
+//========================// GET ORDERS LIST //========================//
 export const getOrders = async () => {
   try {
     const {
@@ -40,7 +40,7 @@ export const getOrders = async () => {
   }
 };
 
-//*************************SEARCH BOOKS BY NAME****************
+//========================// SEARCH BOOKS BY NAME //========================//
 export const searchBook = async (searchInput) => {
   try {
     const {
@@ -52,7 +52,7 @@ export const searchBook = async (searchInput) => {
   }
 };
 
-//*************************SIGN UP***************************
+//========================// SIGN UP //========================//
 export const userSignUp = async (signUpData) => {
   try {
     await axios.post(`${BASE_URL}/api/v1/signup`, signUpData).then((res) => {
@@ -63,14 +63,24 @@ export const userSignUp = async (signUpData) => {
   }
 };
 
-//********************* LOGIN ****************************** */
+//========================// LOGIN service //============================/
 export const userSignIn = async (signInData) => {
   try {
     await axios
       .post(`${BASE_URL}/api/v1/signin`, signInData)
       .then((response) => {
-        console.log(response.data);
+        console.log("Backend response", response);
+        return response;
       });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//===============================// DELETE SERVICE //=========================
+export const deleteUserData = async () => {
+  try {
+    await axios.delete(`${BASE_URL}/api/v1/signup`);
   } catch (error) {
     console.log(error);
   }

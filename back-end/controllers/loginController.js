@@ -14,6 +14,8 @@ exports.userLogin = async (req, res) => {
     res.status(200).json({ message: "Sign in successful" });
     console.log("Login successful");
     console.log(loginData);
+    // res.redirect("http://localhost:8000/");
+    console.log("redirect successfull");
   } else {
     res.status(500).json({ data: "No user found" });
   }
