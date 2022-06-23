@@ -78,9 +78,9 @@ export const userSignIn = async (signInData) => {
 };
 
 //===============================// DELETE SERVICE //=========================
-export const deleteUserData = async () => {
+export const deleteUserData = async (id) => {
   try {
-    await axios.delete(`${BASE_URL}/api/v1/signup`);
+    return await axios.delete(`${BASE_URL}/api/v1/signup/${id}`);
   } catch (error) {
     console.log(error);
   }
