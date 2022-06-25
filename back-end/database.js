@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+mongoose.set("debug", true);
 //**************DATABASE CONNECTION ESTABLISHMENT******************
 mongoose.connect(
   "mongodb+srv://myNewDatabase:Mahatab123@cluster0.zhoox.mongodb.net/bookstoredb?retryWrites=true&w=majority",

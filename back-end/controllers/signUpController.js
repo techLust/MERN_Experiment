@@ -39,7 +39,7 @@ exports.updateUser = async (req, res) => {
     });
   } catch (err) {
     res.status(404).json({
-      data: "Failed",
+      status: "Failed",
       message: err,
     });
 

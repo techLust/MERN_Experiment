@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 //*********** SIGN UP SCHEMA **************** */
-const signUpSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
@@ -26,38 +27,38 @@ const signUpSchema = new mongoose.Schema(
   }
 );
 
-signUpSchema.pre("save", function (next) {
+// Token generator middleware
+userSchema.methods.generateAuthToken = async function () {
   const user = this;
-
-  if (this.isModified("password") || this.isNew) {
-    bcrypt.genSalt(10, function (saltError, salt) {
-      if (saltError) {
-        return next(saltError);
-      } else {
-        bcrypt.hash(user.password, salt, function (hashError, hash) {
-          if (hashError) {
-            return next(hashError);
-          }
-
-          user.password = hash;
-          next();
-        });
-      }
-    });
-  } else {
-    return next();
-  }
-});
-
-signUpSchema.methods.comparePassword = function (password, callback) {
-  bcrypt.compare(password, this.password, function (error, isMatch) {
-    if (error) {
-      return callback(error);
-    } else {
-      callback(null, isMatch);
-    }
-  });
+  const token = jwt.sign({ _id: user._id.toString() }, "HARDtoBREAKmyTOKEN");
+  return token;
 };
 
-const SignUp = mongoose.model("Signup", signUpSchema);
-module.exports = SignUp;
+// Middleware to hash plain password
+userSchema.pre("save", async function (next) {
+  const user = this;
+
+  if (user.isModified("password")) {
+    user.password = await bcrypt.hash(user.password, 8);
+  }
+
+  next();
+});
+
+// Login Credential checker middleware
+userSchema.statics.findByCredentials = async (email, password) => {
+  const user = await User.findOne({ email });
+  if (!user) {
+    return { status: false, msg: "Unable to login" };
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return { status: false, msg: "Unable to login" };
+  }
+
+  return { status: true, user: user, msg: "Successfully login" };
+};
+
+const User = mongoose.model("User", userSchema);
+module.exports = User;

@@ -5,7 +5,7 @@ import { getUserList, deleteUserData } from "../api";
 // import UserDetails from "./UserDetails"
 import DeleteIcon from "@mui/icons-material/Delete";
 import UpdateIcon from "@mui/icons-material/Update";
-import Snackbar from "@mui/material/Snackbar";
+// import Snackbar from "@mui/material/Snackbar";
 
 const Users = () => {
   const [users, setUser] = useState([]);
@@ -64,26 +64,24 @@ const Users = () => {
       </div>
       {users.length == 0 ? <h2>No user found</h2> : ""}
       {users?.map((user) => (
-        <>
-          <div className="user_details">
-            <div>{user.firstName}</div>
-            <div>{user.lastName}</div>
-            <div>{user.firstName + " " + user.lastName}</div>
-            <div>{user.email}</div>
-            <div className="action_icons">
-              <div>
-                <UpdateIcon onClick={updateUserHandler} />
-              </div>
-              <div>
-                <DeleteIcon
-                  onClick={() => {
-                    deleteUserHandler(user._id);
-                  }}
-                />
-              </div>
+        <div className="user_details">
+          <div>{user.firstName}</div>
+          <div>{user.lastName}</div>
+          <div>{user.firstName + " " + user.lastName}</div>
+          <div>{user.email}</div>
+          <div className="action_icons">
+            <div>
+              <UpdateIcon onClick={updateUserHandler} />
+            </div>
+            <div>
+              <DeleteIcon
+                onClick={() => {
+                  deleteUserHandler(user._id);
+                }}
+              />
             </div>
           </div>
-        </>
+        </div>
       ))}
       {/* <UserDetails /> */}
     </div>

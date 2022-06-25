@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//**************************// APIs(Services) CALL //************************* */
+//**************************// APIs(SERVICES) CALL //************************* */
 
 const BASE_URL = "http://localhost:8000";
 
@@ -63,21 +63,16 @@ export const userSignUp = async (signUpData) => {
   }
 };
 
-//========================// LOGIN service //============================/
+//========================// LOGIN SERVICE //============================/
 export const userSignIn = async (signInData) => {
   try {
-    await axios
-      .post(`${BASE_URL}/api/v1/signin`, signInData)
-      .then((response) => {
-        console.log("Backend response", response);
-        return response;
-      });
+    return await axios.post(`${BASE_URL}/api/v1/signin`, signInData);
   } catch (error) {
     console.log(error);
   }
 };
 
-//===============================// DELETE SERVICE //=========================
+//===============================// DELETE USER SERVICE //=========================
 export const deleteUserData = async (id) => {
   try {
     return await axios.delete(`${BASE_URL}/api/v1/signup/${id}`);
@@ -85,3 +80,10 @@ export const deleteUserData = async (id) => {
     console.log(error);
   }
 };
+
+//==============================// DELETE ORDERS SERVICE //========================
+// export const deleteOrderData = async (id) => {
+//   try {
+//     return await axios.delete(`${BSAE_URL}/api/v1/orders/${id}`);
+//   } catch (error) {}
+// };

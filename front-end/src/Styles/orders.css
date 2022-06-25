@@ -2,7 +2,7 @@
   display: grid;
   background-color: #1976d2;
   color: rgb(255, 255, 255);
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.5fr;
   margin-bottom: 10px;
   height: 3rem;
   justify-items: center;
@@ -13,7 +13,7 @@
 .orders {
   display: grid;
   background-color: #f2f2f2;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.5fr;
   margin-bottom: 6px;
   height: 4rem;
   align-items: center;

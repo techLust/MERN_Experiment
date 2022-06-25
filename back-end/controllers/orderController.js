@@ -1,7 +1,7 @@
 const orderModel = require("../models/order.model");
 const { isValidObjectId } = require("mongoose");
 
-//******************* CREATE ORDER ******************** */
+//=========================// CREATE ORDER //=========================
 exports.placeOrder = async (req, res) => {
   try {
     const { book_id, user_id, address, pin_code, phone } = req.body;
@@ -33,15 +33,32 @@ exports.placeOrder = async (req, res) => {
   }
 };
 
-// GET ORDER
+//==========================// GET ORDER //============================
 exports.getOrders = async (req, res) => {
   try {
-    const query = {};
-    const orders = await orderModel.find(query);
-
+    const orders = await orderModel.find();
     res.status(200).json({ data: orders });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ msg: "Something went wrong" });
   }
 };
+
+//=========================// UPDATE ORDER //============================
+exports.updateOrders = async (req, res) => {
+  try {
+    await orderModel.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json({
+      status: "Success",
+      data: {
+        order: "Order updated",
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "Failed",
+      message: error,
+    });
+  }
+};
+//=========================// DELETE ORDERS //===========================

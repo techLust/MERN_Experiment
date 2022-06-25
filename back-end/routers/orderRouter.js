@@ -8,4 +8,6 @@ router
   .post(orderController.placeOrder)
   .get(orderController.getOrders);
 
+router.route("/:id").patch(orderController.updateOrders);
+
 module.exports = router;
